@@ -1,4 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scripts/Input.gd" type="Script" id=1]
+[ext_resource path="res://fonts/gochi_hand_28.tres" type="DynamicFont" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 1 )
@@ -8,6 +11,10 @@ bg_color = Color( 0.901961, 0.729412, 0.729412, 1 )
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.643137, 0.8, 0.976471, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=4]
 
 [node name="Game" type="Control"]
 anchor_right = 1.0
@@ -33,15 +40,37 @@ margin_right = 1004.0
 margin_bottom = 580.0
 custom_constants/separation = 20
 
-[node name="PanelContainer" type="PanelContainer" parent="Background/MarginContainer/Rows"]
+[node name="GameInfo" type="PanelContainer" parent="Background/MarginContainer/Rows"]
 margin_right = 984.0
 margin_bottom = 480.0
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 2 )
 
-[node name="PanelContainer2" type="PanelContainer" parent="Background/MarginContainer/Rows"]
+[node name="InputArea" type="PanelContainer" parent="Background/MarginContainer/Rows"]
 margin_top = 500.0
 margin_right = 984.0
 margin_bottom = 560.0
 rect_min_size = Vector2( 0, 60 )
 custom_styles/panel = SubResource( 3 )
+
+[node name="Columns" type="HBoxContainer" parent="Background/MarginContainer/Rows/InputArea"]
+margin_right = 984.0
+margin_bottom = 60.0
+
+[node name="Caret" type="Label" parent="Background/MarginContainer/Rows/InputArea/Columns"]
+margin_top = 13.0
+margin_right = 23.0
+margin_bottom = 47.0
+custom_fonts/font = ExtResource( 2 )
+text = " > "
+
+[node name="Input" type="LineEdit" parent="Background/MarginContainer/Rows/InputArea/Columns"]
+margin_left = 27.0
+margin_right = 984.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+custom_styles/focus = SubResource( 5 )
+custom_styles/normal = SubResource( 4 )
+max_length = 48
+script = ExtResource( 1 )
