@@ -48,6 +48,13 @@ margin_bottom = 480.0
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 2 )
 
+[node name="ScrollContainer" type="ScrollContainer" parent="Background/MarginContainer/Rows/GameInfo"]
+margin_right = 984.0
+margin_bottom = 480.0
+scroll_horizontal_enabled = false
+
+[node name="HistoryRows" type="VBoxContainer" parent="Background/MarginContainer/Rows/GameInfo/ScrollContainer"]
+
 [node name="InputArea" type="PanelContainer" parent="Background/MarginContainer/Rows"]
 margin_top = 500.0
 margin_right = 984.0
@@ -76,3 +83,6 @@ custom_styles/focus = SubResource( 5 )
 custom_styles/normal = SubResource( 4 )
 max_length = 48
 script = ExtResource( 1 )
+
+[connection signal="text_entered" from="Background/MarginContainer/Rows/InputArea/Columns/Input" to="." method="_on_Input_text_entered"]
+[connection signal="text_entered" from="Background/MarginContainer/Rows/InputArea/Columns/Input" to="Background/MarginContainer/Rows/InputArea/Columns/Input" method="_on_Input_text_entered"]
