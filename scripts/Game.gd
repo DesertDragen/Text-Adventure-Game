@@ -10,5 +10,7 @@ onready var history_rows = $Background/MarginContainer/Rows/GameInfo/ScrollConta
 func _on_Input_text_entered(new_text: String) -> void:
 	# Creating an instance of the InputResponse scene
 	var input_response = InputResponse.instance()
+	# Sending the new_text to the function in InputResponse script
+	input_response.set_text(new_text, "This is where a repsonse would go")
 	# Adding the instance of the scene as a child of the history_rows node
 	history_rows.add_child(input_response)
