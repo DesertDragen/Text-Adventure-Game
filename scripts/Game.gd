@@ -26,6 +26,10 @@ func handle_scrollbar_changed():
 
 # 
 func _on_Input_text_entered(new_text: String) -> void:
+	# Return nothing if the user enters nothing
+	if new_text.empty():
+		return
+		
 	# Creating an instance of the InputResponse scene
 	var input_response = InputResponse.instance()
 	# Sending the new_text to the function in InputResponse script
