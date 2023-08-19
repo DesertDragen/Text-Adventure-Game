@@ -3,6 +3,9 @@ extends Control
 # Storing the data of the InputResponse scene
 const InputResponse = preload("res://scenes/InputResponse.tscn")
 
+# This value can be edited in the editor
+export (int) var max_lines_remembered := 30
+
 var max_scroll_length := 0
 
 # Only use $ to access the children of the nodes
@@ -36,3 +39,13 @@ func _on_Input_text_entered(new_text: String) -> void:
 	input_response.set_text(new_text, "This is where a repsonse would go")
 	# Adding the instance of the scene as a child of the history_rows node
 	history_rows.add_child(input_response)
+	
+	# Return the number of children in HistoryRows and delete the earlier lines
+	if history_rows.get_child_count() > max_lines_remembered:
+		# Subtract the max lines remembered from the number of rows from HistoryRows
+		var rows_to_forget = history_rows.get_child_count() - max_lines_remembered
+		# Loop through an array to forget one line
+		for i in range(rows_to_forget):
+			# queue_free deletes from the tree and from memory (deletes as soon as its safe to do so)
+			history_rows.get_child(i).queue_free()
+
