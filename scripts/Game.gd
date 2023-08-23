@@ -39,7 +39,9 @@ func _on_Input_text_entered(new_text: String) -> void:
 	input_response.set_text(new_text, "This is where a repsonse would go")
 	# Adding the instance of the scene as a child of the history_rows node
 	history_rows.add_child(input_response)
-	
+
+
+func delete_history_beyond_limit():
 	# Return the number of children in HistoryRows and delete the earlier lines
 	if history_rows.get_child_count() > max_lines_remembered:
 		# Subtract the max lines remembered from the number of rows from HistoryRows
@@ -48,4 +50,5 @@ func _on_Input_text_entered(new_text: String) -> void:
 		for i in range(rows_to_forget):
 			# queue_free deletes from the tree and from memory (deletes as soon as its safe to do so)
 			history_rows.get_child(i).queue_free()
+
 
