@@ -14,6 +14,8 @@ func process_command(input: String) -> String:
 		
 	# match == switch case
 	match first_word:
+		"help":
+			return help()
 		"go":
 			return go(second_word)
 		_: # _: == default
@@ -27,3 +29,7 @@ func go(second_word: String) -> String:
 	
 	# Can do "%s %s" % [word_one, word_two...]	
 	return "You go %s" % second_word
+
+
+func help() -> String:
+	return "You can use these commands: help, go [location]"
