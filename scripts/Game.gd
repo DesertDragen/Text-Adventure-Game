@@ -8,7 +8,8 @@ export (int) var max_lines_remembered := 30
 
 var max_scroll_length := 0
 
-# Only use $ to access the children of the nodes
+# Use $ to access the children of the nodes or another script
+onready var command_processor = $CommandProcessor
 onready var history_rows = $Background/MarginContainer/Rows/GameInfo/Scroll/HistoryRows
 onready var scroll = $Background/MarginContainer/Rows/GameInfo/Scroll
 onready var scrollbar = scroll.get_v_scrollbar()
@@ -35,10 +36,13 @@ func _on_Input_text_entered(new_text: String) -> void:
 		
 	# Creating an instance of the InputResponse scene
 	var input_response = InputResponse.instance()
+	var response = command_processor.process_command(new_text)
 	# Sending the new_text to the function in InputResponse script
-	input_response.set_text(new_text, "This is where a repsonse would go")
+	input_response.set_text(new_text, response)
 	# Adding the instance of the scene as a child of the history_rows node
 	history_rows.add_child(input_response)
+	
+	delete_history_beyond_limit()
 
 
 func delete_history_beyond_limit():
