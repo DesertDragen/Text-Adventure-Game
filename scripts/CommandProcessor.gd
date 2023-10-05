@@ -1,6 +1,15 @@
 extends Node
 
 
+signal response_generated(response_text)
+
+var current_room = null
+
+
+func initilize(starting_room):
+	current_room = starting_room
+
+
 func process_command(input: String) -> String:
 	# Split the words at the space and do it only once
 	var words = input.split(" ", false)

@@ -96,7 +96,7 @@ script = ExtResource( 3 )
 
 [node name="RoomManager" type="Node" parent="."]
 
-[node name="Room" parent="RoomManager" instance=ExtResource( 1 )]
+[node name="HouseRoom" parent="RoomManager" instance=ExtResource( 1 )]
 margin_left = 7.0
 margin_top = -378.0
 margin_right = 257.0

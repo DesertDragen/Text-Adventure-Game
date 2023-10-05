@@ -14,15 +14,16 @@ onready var command_processor = $CommandProcessor
 onready var history_rows = $Background/MarginContainer/Rows/GameInfo/Scroll/HistoryRows
 onready var scroll = $Background/MarginContainer/Rows/GameInfo/Scroll
 onready var scrollbar = scroll.get_v_scrollbar()
+onready var room_manager = $RoomManager
 
 
 func _ready() -> void:
 	scrollbar.connect("changed", self, "handle_scrollbar_changed")
 	# Set a max baseline for the scroll length
 	max_scroll_length = scrollbar.max_value
-	var starting_message = Response.instance()
-	starting_message.text = "You spawn into what seems to be a dungeon of some sort. You remember talking to a God about where you wanted to go. You want to leave the dungeon and see the sights of the world. You can type 'help' to see your available commands."
-	add_response_to_game(starting_message)
+	# Connect this first so that the player gets the message first
+	command_processor.connect("response_generated", self, "handle_response_generated")
+	command_processor.initilize(room_manager.get_child(0))
 	
 
 # Only scroll down when the max value of the scrollbar changes
@@ -44,6 +45,13 @@ func _on_Input_text_entered(new_text: String) -> void:
 	input_response.set_text(new_text, response)
 	
 	add_response_to_game(input_response)
+
+
+func handle_response_generated(response_text):
+	# Create a new instance of Response
+	var response = Response.instance()
+	response.text = response_text
+	add_response_to_game(response)
 
 
 func add_response_to_game(response: Control):
