@@ -32,7 +32,6 @@ func handle_scrollbar_changed():
 		scroll.scroll_vertical = max_scroll_length
 
 
-# 
 func _on_Input_text_entered(new_text: String) -> void:
 	# Return nothing if the user enters nothing
 	if new_text.empty():
