@@ -101,8 +101,8 @@ margin_left = 7.0
 margin_top = -378.0
 margin_right = 257.0
 margin_bottom = -178.0
-room_name = "House"
-room_description = "PC Room"
+room_name = "a house"
+room_description = "a random house that you do not recognize."
 
 [connection signal="text_entered" from="Background/MarginContainer/Rows/InputArea/Columns/Input" to="." method="_on_Input_text_entered"]
 [connection signal="text_entered" from="Background/MarginContainer/Rows/InputArea/Columns/Input" to="Background/MarginContainer/Rows/InputArea/Columns/Input" method="_on_Input_text_entered"]

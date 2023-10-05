@@ -7,7 +7,7 @@ var current_room = null
 
 
 func initilize(starting_room):
-	current_room = starting_room
+	change_room(starting_room)
 
 
 func process_command(input: String) -> String:
@@ -42,3 +42,13 @@ func go(second_word: String) -> String:
 
 func help() -> String:
 	return "You can use these commands: help, go [location]"
+	
+
+# new_room is of type Room (class)
+func change_room(new_room: Room1):
+	current_room = new_room
+	var strings = PoolStringArray([
+		"You are now in: " + new_room.room_name + ". It is " + new_room.room_description,
+		"Exits: "
+	]).join("\n")
+	emit_signal("response_generated", strings)

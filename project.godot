@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "PanelContainer",
+"class": "Room1",
+"language": "GDScript",
+"path": "res://scenes/Room.gd"
+} ]
+_global_script_class_icons={
+"Room1": ""
+}
+
 [application]
 
 config/name="Text_Adventure_Game"

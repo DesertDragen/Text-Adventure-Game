@@ -21,8 +21,12 @@ func _ready() -> void:
 	scrollbar.connect("changed", self, "handle_scrollbar_changed")
 	# Set a max baseline for the scroll length
 	max_scroll_length = scrollbar.max_value
+	
+	handle_response_generated("Welcome to the Retro Text Adventure! You can type 'help' to see available commands.")
+	
 	# Connect this first so that the player gets the message first
 	command_processor.connect("response_generated", self, "handle_response_generated")
+	# Initializes the game and prints out the new room message
 	command_processor.initilize(room_manager.get_child(0))
 	
 
@@ -47,7 +51,7 @@ func _on_Input_text_entered(new_text: String) -> void:
 	add_response_to_game(input_response)
 
 
-func handle_response_generated(response_text):
+func handle_response_generated(response_text: String):
 	# Create a new instance of Response
 	var response = Response.instance()
 	response.text = response_text
